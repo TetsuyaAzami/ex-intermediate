@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table,
+      td,
+      th {
+        width: 300px;
+        border: 1px solid black;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ホテル検索</h1>
+    <form th:action="@{/hotel-search/search}" method="post">
+      <p th:if="${numberFormatError}" th:text="${numberFormatError}"></p>
+      <input type="text" id="price" name="price" />円以下<br />
+      <button>検索</button>
+    </form>
+
+    <th:block th:each="hotel : ${hotelList}">
+      <table>
+        <tr>
+          <th>ホテル名</th>
+          <td th:text="${hotel.hotelName}"></td>
+        </tr>
+        <tr>
+          <th>最寄駅</th>
+          <td th:text="${hotel.nearestStation}"></td>
+        </tr>
+        <tr>
+          <th>価格</th>
+          <td th:text="${hotel.price}"></td>
+        </tr>
+      </table>
+    </th:block>
+  </body>
+</html>
