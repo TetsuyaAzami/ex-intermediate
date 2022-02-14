@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>衣類検索</h1>
+    <form th:action="@{/search-clothes/search}" method="post">
+      <input type="radio" id="man" name="gender" value="0" checked /><label
+        for="man"
+        >Man</label
+      ><br />
+      <input type="radio" id="woman" name="gender" value="1" /><label
+        for="woman"
+        >Woman</label
+      >
+      <select name="color">
+        <option value="赤">赤</option>
+        <option value="青">青</option>
+        <option value="白">白</option>
+        <option value="黄">黄色</option></select
+      ><br />
+      <button>検索</button>
+
+      <th:block th:each="clothe : ${clotheList}">
+        <table>
+          <tr>
+            <th>ジャンル</th>
+            <td th:text="${clothe.genre}"></td>
+          </tr>
+          <tr>
+            <th>サイズ</th>
+            <td th:text="${clothe.size}"></td>
+          </tr>
+          <tr>
+            <th>価格</th>
+            <td th:text="${clothe.price}"></td>
+          </tr>
+        </table>
+      </th:block>
+    </form>
+  </body>
+</html>
